@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-echo "\"${STACK}\" stack detected" && exit 0
+echo "Running prod:build:compile on \"${STACK}\" stack" && exit 0
