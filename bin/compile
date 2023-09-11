@@ -6,6 +6,13 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
+# convenience functions
+source "$(cd $(dirname $0); cd ..; pwd)"/bin/util/common.sh
+
+# use err_trap from common.sh on error
+# we do not 'set -o errtrace', because that would cause subshell failures to fire the trap twice, e.g. with someval=$(func_that_fails)
+trap 'err_trap' ERR
+
 export_env_dir() {
   whitelist_regex=${2:-''}
   blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
